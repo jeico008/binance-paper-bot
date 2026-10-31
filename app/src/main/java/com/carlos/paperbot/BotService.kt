@@ -70,7 +70,7 @@ class BotService : Service() {
         }
     }
 
-    private val cfg = BotConfig()
+    private lateinit var cfg: BotConfig
     private lateinit var account: PaperAccount
     private var worker: Thread? = null
     @Volatile private var alive = false
@@ -98,6 +98,7 @@ class BotService : Service() {
             BotRuntime.running = true
             val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
             wake = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "paperbot:loop").apply { acquire() }
+            cfg = ConfigStore.load(this)
             account = PaperAccount(cfg)
             Storage.load(this, account)
             account.onEvent = { ev, sym, price, detail -> handleEvent(ev, sym, price, detail) }

@@ -26,9 +26,10 @@ mismos 4 pares, mismos parámetros, mismo capital simulado (591 USDT). Solo simu
 - Guarda el estado y se reanuda solo tras reiniciar el móvil (si estaba activo).
 - CSV de eventos y operaciones: carpeta Android/data/com.carlos.paperbot/files/ (ruta visible en la app).
 
-## Cambiar parámetros
-Edita los valores de `BotConfig` al inicio de `app/src/main/java/com/carlos/paperbot/Core.kt` y vuelve a subir/commit;
-Actions genera un APK nuevo. Si cambias el capital inicial, usa "Reiniciar cuenta simulada".
+## Cambiar parámetros (dentro de la app)
+Botón **Configuración**: todos los parámetros de tu config.json (pares, capital, riesgo, stop, objetivo, RSI, ADX, EMAs, MACD,
+intervalos…). Pulsa GUARDAR; se validan y se guardan en el móvil. Se aplican al detener e iniciar el bot.
+"Restaurar valores originales" vuelve a los de tu config.json. Si cambias el capital inicial, la cuenta simulada empieza de cero.
 
 ## Diferencias con la versión de escritorio
 Sin gráfico, sin backtest de 6 meses y sin WhatsApp/Twilio (lo reemplazan las notificaciones del móvil).

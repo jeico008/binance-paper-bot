@@ -30,7 +30,7 @@ class MainActivity : Activity() {
             val on = BotRuntime.running
             btnToggle.text = if (on) "DETENER BOT" else "INICIAR BOT"
             tvStatus.text = (if (on) "● ACTIVO — " else "● DETENIDO — ") + BotRuntime.status
-            tvSummary.text = BotRuntime.summary.ifEmpty { "Capital simulado inicial: ${BotConfig().capitalInitial} USDT" }
+            tvSummary.text = BotRuntime.summary.ifEmpty { "Capital simulado inicial: ${ConfigStore.load(this@MainActivity).capitalInitial} USDT" }
             tvLog.text = BotRuntime.logText().ifEmpty { "Sin eventos todavía." }
             ui.postDelayed(this, 2000)
         }
@@ -59,6 +59,10 @@ class MainActivity : Activity() {
             }
         }
         root.addView(btnToggle)
+        root.addView(Button(this).apply {
+            text = "Configuración"
+            setOnClickListener { startActivity(Intent(this@MainActivity, SettingsActivity::class.java)) }
+        })
         root.addView(Button(this).apply {
             text = "Permitir uso de batería sin restricciones"
             setOnClickListener { requestBatteryExemption() }
